@@ -47,7 +47,7 @@ export default function Home() {
               </h1>
               <div className="w-12 h-px bg-foreground mb-8" />
               <p className="font-display text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-lg italic">
-                记录技术探索与人文思考，在代码与文字之间寻找共鸣。
+                记录技术探索与人文思考。
               </p>
             </div>
             <div className="md:col-span-4 flex flex-col items-start md:items-end gap-4 pb-2">

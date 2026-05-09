@@ -6,20 +6,20 @@ const contactLinks = [
   {
     icon: Mail,
     label: "邮件",
-    value: "hello@example.com",
-    href: "mailto:hello@example.com",
+    value: "2434059108@qq.com",
+    href: "mailto:2434059108@qq.com",
   },
   {
     icon: Github,
     label: "GitHub",
-    value: "@yourusername",
-    href: "https://github.com",
+    value: "@puupyboy",
+    href: "https://github.com/puupyboy",
   },
   {
     icon: Twitter,
-    label: "Twitter / X",
-    value: "@yourusername",
-    href: "https://twitter.com",
+    label: "微信WeChat",
+    value: "y1363053589",
+    href: "https://twitter.com/puupyboy",
   },
 ];
 
@@ -98,7 +98,7 @@ export default function Contact() {
                   响应时间
                 </p>
                 <p className="font-display text-base text-muted-foreground italic">
-                  通常在 24–48 小时内回复邮件。
+                  目前邮箱功能还未开通，请手动添加我~
                 </p>
               </div>
             </div>

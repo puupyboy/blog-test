@@ -9,22 +9,10 @@ const skills = [
 
 const experiences = [
   {
-    period: "2023 — 至今",
-    role: "全栈工程师",
-    company: "某科技公司",
-    description: "负责核心产品的前后端架构设计与开发，主导多个关键功能模块的落地。",
-  },
-  {
-    period: "2021 — 2023",
-    role: "前端开发工程师",
-    company: "某互联网公司",
-    description: "参与 B 端产品的研发，优化用户体验，推动前端工程化建设。",
-  },
-  {
-    period: "2017 — 2021",
-    role: "计算机科学 学士",
-    company: "某大学",
-    description: "主修计算机科学与技术，辅修数学，参与多项科研项目。",
+    period: "2024 — 至今",
+    role: "材料科学与工程 学士",
+    company: "吉林大学",
+    description: "主修材料成型及控制工程，辅修计算机科学与技术，参与多项比赛。",
   },
 ];
 
@@ -47,13 +35,13 @@ export default function About() {
               <div className="w-12 h-px bg-foreground mb-8" />
               <div className="space-y-5 font-display text-lg text-muted-foreground italic leading-relaxed">
                 <p>
-                  我是一名全栈工程师与独立创作者，热衷于用技术解决真实问题，同时对设计、写作和人文思考保持持续的好奇心。
-                </p>
-                <p>
-                  在代码之外，我喜欢阅读哲学与历史，相信好的软件如同好的文章——需要清晰的结构、精准的表达，以及对读者（用户）的深刻理解。
+                  我是一名吉林大学在读学生，平时会在这里写写文章。
                 </p>
                 <p>
                   这个博客是我记录思考、分享探索的地方。欢迎你在这里停留，也欢迎与我交流。
+                </p>
+                <p>
+                  “天之道，损不足而奉有余；人之道，损有余而补不足。”——《老子》
                 </p>
               </div>
             </div>
