@@ -23,6 +23,11 @@ export async function setupVite(app: Express, server: Server) {
   app.get("*", async (req, res, next) => {
     const url = req.originalUrl;
 
+    // Skip API requests so tRPC queries (GET) don't receive HTML
+    if (req.path.startsWith("/api")) {
+      return next();
+    }
+
     try {
       const clientTemplate = path.resolve(
         import.meta.dirname,
@@ -51,7 +56,10 @@ export function serveStatic(app: Express) {
 
   app.use(express.static(distPath));
 
-  app.get("*", (_req, res) => {
+  app.get("*", (req, res) => {
+    if (req.path.startsWith("/api")) {
+      return res.status(404).json({ error: "Not Found" });
+    }
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }
