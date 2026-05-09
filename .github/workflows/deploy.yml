@@ -34,7 +34,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build project
-        run: 
+        run: |
           chmod +x ./node_modules/.bin/vite
           chmod +x ./node_modules/.bin/esbuild
           npm run build
