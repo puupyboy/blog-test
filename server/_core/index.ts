@@ -33,14 +33,14 @@ async function startServer() {
   app.use(express.json({ limit: "10mb" }));
   app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
-  // tRPC API
-  app.use(
-    "/api/trpc",
-    createExpressMiddleware({
-      router: appRouter,
-      createContext,
-    })
-  );
+  const trpcMiddleware = createExpressMiddleware({
+    router: appRouter,
+    createContext,
+  });
+
+  // tRPC API - 同时支持根路径和带 base 前缀的路径
+  app.use("/api/trpc", trpcMiddleware);
+  app.use("/blog-test/api/trpc", trpcMiddleware);
 
   // Development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
