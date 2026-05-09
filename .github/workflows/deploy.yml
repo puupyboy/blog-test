@@ -34,7 +34,10 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build project
-        run: npm run build
+        run: 
+          chmod +x ./node_modules/.bin/vite
+          chmod +x ./node_modules/.bin/esbuild
+          npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
