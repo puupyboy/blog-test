@@ -8,10 +8,14 @@ import "./index.css";
 
 const queryClient = new QueryClient();
 
+const baseUrl = import.meta.env.BASE_URL ?? "/";
+const normalizedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+const apiUrl = normalizedBase === "/" ? "/api/trpc" : `${normalizedBase}api/trpc`;
+
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: "/api/trpc",
+      url: apiUrl,
       transformer: superjson,
       fetch(input, init) {
         return globalThis.fetch(input, {
