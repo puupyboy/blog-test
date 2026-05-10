@@ -1,27 +1,16 @@
 import { Link, useParams } from "wouter";
 import { ArrowLeft, Calendar, Tag } from "lucide-react";
-import { trpc } from "@/lib/trpc";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { getPostBySlug } from "@/data/posts";
 
 export default function BlogPost() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug ?? "";
 
-  const { data: post, isLoading, error } = trpc.posts.bySlug.useQuery(
-    { slug },
-    { enabled: !!slug }
-  );
+  const post = getPostBySlug(slug);
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen pt-32 flex items-center justify-center">
-        <p className="font-display text-xl text-muted-foreground italic">加载中...</p>
-      </div>
-    );
-  }
-
-  if (error || !post) {
+  if (!post) {
     return (
       <div className="min-h-screen pt-32">
         <div className="container text-center py-20">
@@ -112,7 +101,8 @@ export default function BlogPost() {
               year: "numeric",
               month: "long",
               day: "numeric",
-            })} 更新
+            })}{" "}
+            更新
           </p>
         </div>
       </div>
