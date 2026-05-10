@@ -144,6 +144,7 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { defineConfig } from "vite";
 var vite_config_default = defineConfig({
+  base: "/blog-test/",
   plugins: [react(), tailwindcss(), jsxLocPlugin()],
   resolve: {
     alias: {
@@ -181,7 +182,7 @@ async function setupVite(app, server) {
     appType: "custom"
   });
   app.use(vite.middlewares);
-  app.use("*", async (req, res, next) => {
+  app.get("*", async (req, res, next) => {
     const url = req.originalUrl;
     try {
       const clientTemplate = path2.resolve(
@@ -207,7 +208,7 @@ function serveStatic(app) {
     );
   }
   app.use(express.static(distPath));
-  app.use("*", (_req, res) => {
+  app.get("*", (_req, res) => {
     res.sendFile(path2.resolve(distPath, "index.html"));
   });
 }
@@ -235,13 +236,12 @@ async function startServer() {
   const server = createServer(app);
   app.use(express2.json({ limit: "10mb" }));
   app.use(express2.urlencoded({ limit: "10mb", extended: true }));
-  app.use(
-    "/api/trpc",
-    createExpressMiddleware({
-      router: appRouter,
-      createContext
-    })
-  );
+  const trpcMiddleware = createExpressMiddleware({
+    router: appRouter,
+    createContext
+  });
+  app.use("/api/trpc", trpcMiddleware);
+  app.use("/blog-test/api/trpc", trpcMiddleware);
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);
   } else {

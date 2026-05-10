@@ -10,7 +10,11 @@ const queryClient = new QueryClient();
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 const normalizedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
-const apiUrl = normalizedBase === "/" ? "/api/trpc" : `${normalizedBase}api/trpc`;
+
+// 生产环境下可通过 VITE_API_URL 指定外部后端地址（如 GitHub Pages 部署时）
+const apiUrl =
+  import.meta.env.VITE_API_URL ||
+  (normalizedBase === "/" ? "/api/trpc" : `${normalizedBase}api/trpc`);
 
 const trpcClient = trpc.createClient({
   links: [
